@@ -20,7 +20,8 @@ enterBtn.addEventListener('click', function(){
   let input = document.getElementById('userInput').value;
 
   // if user input is not a number
-  if (isNaN(input)) {
+  // OR if user input is blank
+  if (isNaN(input) || input == "") {
     // console.log("not number");
     output.innerHTML = "Invalid Entry - Please enter a number";
   }
