@@ -10,6 +10,10 @@ let output = document.getElementById('outputText');
 // stores rounded/random number user has to guess
 let number = Math.floor(Math.random() * 100);
 
+// CONSTANTS
+const MIN_NUMBER = 1;
+const MAX_NUMBER = 100;
+
 // testing purposes - hide later
 console.log(number);
 
@@ -27,22 +31,28 @@ enterBtn.addEventListener('click', function(){
   }
   // if user input is a number
   else {
-    // console.log("a number");
-    // if input matches number
-    if (input == number){
-      // console.log("You guessed right, your number was " + number);
-      output.innerHTML = `You guessed right, the number was ${number}!`;
+    // if input is less than or greater than range
+    if (input < MIN_NUMBER || input > MAX_NUMBER) {
+      output.innerHTML = `Invalid Entry - Please enter between ${MIN_NUMBER} - ${MAX_NUMBER}`;
     }
-    // if input is lower than number
-    else if (input < number){
-      // console.log("You guessed too low!");
-      output.innerHTML = "You guessed too low, please try again!"
-    }
-    // if input is higher than number
+    // if input is in range
     else {
-      // console.log("You guessed too high!");
-      output.innerHTML = "You guessed too high, please try again!"
+      // if input matches number
+      if (input == number){
+        // console.log("You guessed right, your number was " + number);
+        output.innerHTML = `Correct, the number is ${number}!`;
+      }
+      // if input is lower than number
+      else if (input < number){
+        // console.log("You guessed too low!");
+        output.innerHTML = "You guessed too low, please try again!"
+      }
+      // if input is higher than number
+      else {
+        // console.log("You guessed too high!");
+        output.innerHTML = "You guessed too high, please try again!"
+      }
     }
   }
-
+  
 });
