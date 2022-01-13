@@ -47,6 +47,10 @@ enterBtn.addEventListener('click', function(){
       if (input == number){
         // console.log("You guessed right, your number was " + number);
         output.innerHTML = `Correct, the number is ${number}!`;
+        // disable input field
+        document.getElementById('userInput').disabled = true;
+        // disable enter button
+        document.getElementById('enterBtn').disabled = true;
       }
       // if input is lower than number
       else if (input < number){
