@@ -1,7 +1,7 @@
 /*
   Author:       Moya Goleski
   File:         main.js
-  Last Updated: 01/07/2022
+  Last Updated: 01/13/2022
   Source: https://www.youtube.com/watch?v=2cQUkYU8AmI
 */
 // VARIABLES
@@ -9,6 +9,9 @@ let enterBtn = document.getElementById('enterBtn');
 let output = document.getElementById('outputText');
 // stores rounded/random number user has to guess
 let number = Math.floor(Math.random() * 100);
+// counter for how many valid inputs from user
+let validInputCounter = 0;
+let validInputCounterOutput = document.getElementById('attemptsCounter');
 
 // CONSTANTS
 const MIN_NUMBER = 1;
@@ -37,6 +40,9 @@ enterBtn.addEventListener('click', function(){
     }
     // if input is in range
     else {
+      // add 1 to valid input counter from user
+      validInputCounter++;
+      validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
       // if input matches number
       if (input == number){
         // console.log("You guessed right, your number was " + number);
@@ -54,5 +60,5 @@ enterBtn.addEventListener('click', function(){
       }
     }
   }
-  
+
 });
