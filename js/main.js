@@ -7,6 +7,7 @@
 // VARIABLES
 let output = document.getElementById('outputText');
 let enterBtn = document.getElementById('enterBtn');
+let userInput = document.getElementById('userInput');
 // stores rounded/random number user has to guess
 let number = Math.floor(Math.random() * 100);
 // counter for how many valid inputs from user
@@ -16,7 +17,7 @@ let validInputCounterOutput = document.getElementById('attemptsCounter');
 let playAgainBtn = document.getElementById('playAgainBtn');
 
 // CONSTANTS
-const MIN_NUMBER = 1;
+const MIN_NUMBER = 0;
 const MAX_NUMBER = 100;
 
 // hide end game container
@@ -26,6 +27,15 @@ playAgainBtn.style.visibility = "hidden";
 console.log(number);
 
 // EVENT LISTENER
+// when the user presses the keyboard
+userInput.addEventListener('keyup', function(e) {
+  // if keycode 13 is clicked (13 = enter key)
+  if(e.keyCode === 13) {
+    e.preventDefault();
+    document.getElementById('enterBtn').click();
+  }
+});
+
 // when the user clicks the enter btn
 enterBtn.addEventListener('click', function(){
   // stores value user submitted
@@ -41,7 +51,7 @@ enterBtn.addEventListener('click', function(){
   else {
     // if input is less than or greater than range
     if (input < MIN_NUMBER || input > MAX_NUMBER) {
-      output.innerHTML = `Invalid Entry - Please enter between ${MIN_NUMBER} - ${MAX_NUMBER}`;
+      output.innerHTML = `Invalid Entry - Please enter a number between ${MIN_NUMBER} - ${MAX_NUMBER}`;
     }
     // if input is in range
     else {
