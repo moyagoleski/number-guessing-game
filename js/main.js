@@ -5,17 +5,24 @@
   Source: https://www.youtube.com/watch?v=2cQUkYU8AmI
 */
 // VARIABLES
-let enterBtn = document.getElementById('enterBtn');
 let output = document.getElementById('outputText');
+let enterBtn = document.getElementById('enterBtn');
 // stores rounded/random number user has to guess
 let number = Math.floor(Math.random() * 100);
 // counter for how many valid inputs from user
 let validInputCounter = 0;
 let validInputCounterOutput = document.getElementById('attemptsCounter');
 
+let endGameContainer = document.getElementById('endGameContainer');
+let endGameText = document.getElementById('endGameText');
+let playAgainBtn = document.getElementById('playAgainBtn');
+
 // CONSTANTS
 const MIN_NUMBER = 1;
 const MAX_NUMBER = 100;
+
+// hide end game container
+endGameContainer.style.display = "none";
 
 // testing purposes - hide later
 console.log(number);
@@ -51,6 +58,11 @@ enterBtn.addEventListener('click', function(){
         document.getElementById('userInput').disabled = true;
         // disable enter button
         document.getElementById('enterBtn').disabled = true;
+        // update end game text
+        endGameText.innerHTML = `Thank you for playing! Your attempts were: ${validInputCounter}`;
+        // show end game container
+        endGameContainer.style.display = "block";
+
       }
       // if input is lower than number
       else if (input < number){
@@ -64,5 +76,27 @@ enterBtn.addEventListener('click', function(){
       }
     }
   }
+
+});
+
+// when the user clicks the play again button
+playAgainBtn.addEventListener('click', function () {
+  // reset output text
+  output.innerHTML = "Enter a number below:";
+  // input blank
+  document.getElementById('userInput').value = "";
+  // enable input field
+  document.getElementById('userInput').disabled = false;
+  // enable button
+  document.getElementById('enterBtn').disabled = false;
+  // resets number
+  number = Math.floor(Math.random() * 100);
+  // testing purposes - hide later
+  console.log(number);
+  // reset attempts attemptsCounter
+  validInputCounter = 0;
+  validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
+  // hide end game container
+  endGameContainer.style.display = "none";
 
 });
