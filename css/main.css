@@ -6,6 +6,11 @@
 */
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  margin: 0;
   background-color: #333232;
   color: #FFF;
   font-family: 'montserrat', sans-serif;
@@ -16,7 +21,6 @@ body {
   border: 5px dotted #FFF;
   margin: auto;
   text-align: center;
-
   width: 75%;
   max-width: 420px;
   padding: 10px 10px 25px 10px;
