@@ -1,7 +1,7 @@
 /*
   Author:       Moya Goleski
   File:         main.js
-  Last Updated: 01/13/2022
+  Last Updated: 01/14/2022
   Source: https://www.youtube.com/watch?v=2cQUkYU8AmI
 */
 // VARIABLES
@@ -13,8 +13,6 @@ let number = Math.floor(Math.random() * 100);
 let validInputCounter = 0;
 let validInputCounterOutput = document.getElementById('attemptsCounter');
 
-let endGameContainer = document.getElementById('endGameContainer');
-let endGameText = document.getElementById('endGameText');
 let playAgainBtn = document.getElementById('playAgainBtn');
 
 // CONSTANTS
@@ -22,7 +20,7 @@ const MIN_NUMBER = 1;
 const MAX_NUMBER = 100;
 
 // hide end game container
-endGameContainer.style.display = "none";
+playAgainBtn.style.display = "none";
 
 // testing purposes - hide later
 console.log(number);
@@ -59,9 +57,9 @@ enterBtn.addEventListener('click', function(){
         // disable enter button
         document.getElementById('enterBtn').disabled = true;
         // update end game text
-        endGameText.innerHTML = `Thank you for playing! Your attempts were: ${validInputCounter}`;
-        // show end game container
-        endGameContainer.style.display = "block";
+        attemptsCounter.innerHTML = `Thank you for playing! Your attempts were: ${validInputCounter}`;
+        // show play again button
+        playAgainBtn.style.display = "block";
 
       }
       // if input is lower than number
@@ -96,7 +94,7 @@ playAgainBtn.addEventListener('click', function () {
   // reset attempts attemptsCounter
   validInputCounter = 0;
   validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
-  // hide end game container
-  endGameContainer.style.display = "none";
+  // hide play again button
+  playAgainBtn.style.display = "none";
 
 });
