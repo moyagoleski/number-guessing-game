@@ -20,9 +20,6 @@ let playAgainBtn = document.getElementById('playAgainBtn');
 const MIN_NUMBER = 0;
 const MAX_NUMBER = 100;
 
-// hide end game container
-playAgainBtn.style.visibility = "hidden";
-
 // testing purposes - hide later
 console.log(number);
 
@@ -69,7 +66,7 @@ enterBtn.addEventListener('click', function(){
         // update end game text
         attemptsCounter.innerHTML = `Thank you for playing! Your attempts were: ${validInputCounter}`;
         // show play again button
-        playAgainBtn.style.visibility = "visible";
+        playAgainBtn.style.display = "block";
 
       }
       // if input is lower than number
@@ -105,6 +102,6 @@ playAgainBtn.addEventListener('click', function () {
   validInputCounter = 0;
   validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
   // hide play again button
-  playAgainBtn.style.visibility = "hidden";
+  playAgainBtn.style.display = "none";
 
 });

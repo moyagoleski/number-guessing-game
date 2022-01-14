@@ -46,6 +46,11 @@ h2 {
   padding-top: 4%;
 }
 
+#playAgainBtn {
+  display: none;
+  margin: 0 auto;
+}
+
 button {
   background-color: #EEE8AA;
   border: none;
