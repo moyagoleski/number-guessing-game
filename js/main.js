@@ -57,42 +57,49 @@ enterBtn.addEventListener('click', function(){
     }
     // if input is in range
     else {
-      // add 1 to valid input counter from user
-      validInputCounter++;
-      validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
-      // store valid user input in array
-      userInputArray.push(userInputValue);
-      console.log(userInputArray);
-      // inputGuess.innerHTML = `Guesses: ${userInputArray} `;
-      inputGuess.innerHTML = `Guesses: ${userInputArray}`;
-      // clear input
-      document.getElementById('userInput').value = "";
-
-      // if input matches number
-      if (userInputValue == number){
-        // console.log("You guessed right, your number was " + number);
-        output.innerHTML = `Correct, the number is ${number}!`;
-        // disable input field
-        document.getElementById('userInput').disabled = true;
-        // disable enter button
-        document.getElementById('enterBtn').disabled = true;
-        // update end game text
-        attemptsCounter.innerHTML = `Thank you for playing! Your attempts were ${validInputCounter}`;
-        // hide Guesses text
-        inputGuess.style.display = "none";
-        // show play again button
-        playAgainBtn.style.display = "block";
-
+      // console.log(userInputArray.includes(userInputValue));
+      // if user already input valid number
+      if (userInputArray.includes(userInputValue) === true) {
+        output.innerHTML = `Invalid Entry - Already made that guess! Please try again`;
       }
-      // if input is lower than number
-      else if (userInputValue < number){
-        // console.log("You guessed too low!");
-        output.innerHTML = "You guessed too low, please try again!"
-      }
-      // if input is higher than number
+      // if user did not input valid number
       else {
-        // console.log("You guessed too high!");
-        output.innerHTML = "You guessed too high, please try again!"
+        // add 1 to valid input counter from user
+        validInputCounter++;
+        validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
+        // store valid user input in array
+        userInputArray.push(userInputValue);
+        console.log(userInputArray);
+        // inputGuess.innerHTML = `Guesses: ${userInputArray} `;
+        inputGuess.innerHTML = `Guesses: ${userInputArray}`;
+        // clear input
+        document.getElementById('userInput').value = "";
+
+        // if input matches number
+        if (userInputValue == number){
+          // console.log("You guessed right, your number was " + number);
+          output.innerHTML = `Correct, the number is ${number}!`;
+          // disable input field
+          document.getElementById('userInput').disabled = true;
+          // disable enter button
+          document.getElementById('enterBtn').disabled = true;
+          // update end game text
+          attemptsCounter.innerHTML = `Thank you for playing! Your attempts were ${validInputCounter}`;
+          // hide Guesses text
+          inputGuess.style.display = "none";
+          // show play again button
+          playAgainBtn.style.display = "block";
+        }
+        // if input is lower than number
+        else if (userInputValue < number){
+          // console.log("You guessed too low!");
+          output.innerHTML = "You guessed too low, please try again!"
+        }
+        // if input is higher than number
+        else {
+          // console.log("You guessed too high!");
+          output.innerHTML = "You guessed too high, please try again!"
+        }
       }
     }
   }
