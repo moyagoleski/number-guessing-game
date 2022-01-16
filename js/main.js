@@ -1,7 +1,7 @@
 /*
   Author:       Moya Goleski
   File:         main.js
-  Last Updated: 01/14/2022
+  Last Updated: 01/15/2022
   Source: https://www.youtube.com/watch?v=2cQUkYU8AmI
 */
 // VARIABLES
@@ -20,6 +20,11 @@ let playAgainBtn = document.getElementById('playAgainBtn');
 const MIN_NUMBER = 0;
 const MAX_NUMBER = 100;
 
+// stores users valid inputs
+let userInputArray = [];
+
+console.log(userInputArray);
+
 // testing purposes - hide later
 console.log(number);
 
@@ -36,18 +41,18 @@ userInput.addEventListener('keyup', function(e) {
 // when the user clicks the enter btn
 enterBtn.addEventListener('click', function(){
   // stores value user submitted
-  let input = document.getElementById('userInput').value;
+  let userInputValue = document.getElementById('userInput').value;
 
   // if user input is not a number
   // OR if user input is blank
-  if (isNaN(input) || input == "") {
+  if (isNaN(userInputValue) || userInputValue == "") {
     // console.log("not number");
     output.innerHTML = "Invalid Entry - Please enter a number";
   }
   // if user input is a number
   else {
     // if input is less than or greater than range
-    if (input < MIN_NUMBER || input > MAX_NUMBER) {
+    if (userInputValue < MIN_NUMBER || userInputValue > MAX_NUMBER) {
       output.innerHTML = `Invalid Entry - Please enter a number between ${MIN_NUMBER} - ${MAX_NUMBER}`;
     }
     // if input is in range
@@ -55,8 +60,16 @@ enterBtn.addEventListener('click', function(){
       // add 1 to valid input counter from user
       validInputCounter++;
       validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
+      // store valid user input in array
+      userInputArray.push(userInputValue);
+      console.log(userInputArray);
+      // inputGuess.innerHTML = `Guesses: ${userInputArray} `;
+      inputGuess.innerHTML = `Guesses: ${userInputArray}`;
+      // clear input
+      document.getElementById('userInput').value = "";
+
       // if input matches number
-      if (input == number){
+      if (userInputValue == number){
         // console.log("You guessed right, your number was " + number);
         output.innerHTML = `Correct, the number is ${number}!`;
         // disable input field
@@ -64,13 +77,15 @@ enterBtn.addEventListener('click', function(){
         // disable enter button
         document.getElementById('enterBtn').disabled = true;
         // update end game text
-        attemptsCounter.innerHTML = `Thank you for playing! Your attempts were: ${validInputCounter}`;
+        attemptsCounter.innerHTML = `Thank you for playing! Your attempts were ${validInputCounter}`;
+        // hide Guesses text
+        inputGuess.style.display = "none";
         // show play again button
         playAgainBtn.style.display = "block";
 
       }
       // if input is lower than number
-      else if (input < number){
+      else if (userInputValue < number){
         // console.log("You guessed too low!");
         output.innerHTML = "You guessed too low, please try again!"
       }
@@ -103,5 +118,10 @@ playAgainBtn.addEventListener('click', function () {
   validInputCounterOutput.innerHTML = `Attempts: ${validInputCounter}`;
   // hide play again button
   playAgainBtn.style.display = "none";
+  // empties array
+  userInputArray = [];
+  // show Guesses text
+  inputGuess.style.display = "block";
+  inputGuess.innerHTML = `Guesses: ${userInputArray}`;
 
 });
